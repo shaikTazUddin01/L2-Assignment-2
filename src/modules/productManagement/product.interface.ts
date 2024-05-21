@@ -14,7 +14,7 @@ export type Product = {
   description: String;
   price: Number;
   category: String;
-  tags: [String];
-  variants: [Variants];
+  tags: String[];
+  variants: Variants[];
   inventory: Inventory;
 };
