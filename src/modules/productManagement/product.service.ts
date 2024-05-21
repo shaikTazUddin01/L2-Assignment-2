@@ -24,17 +24,17 @@ const getProductById = async (id: string) => {
 
 //updateProductById
 
-// const updateProducFromDB= async(id : string ,updateInfo : Product)=>{
+const updateProducFromDB = async (id: string, updateInfo: Product) => {
+  const result = await productModel.findByIdAndUpdate(id, updateInfo, {
+    returnOriginal: false,
+  });
 
-//   const result=await productModel.findByIdAndUpdate(id,updateInfo)
-
-//   return result
-
-// }
+  return result;
+};
 
 export const ProductService = {
   createProductInToDB,
   getProductFromDB,
   getProductById,
-  updateProducFromDB
+  updateProducFromDB,
 };

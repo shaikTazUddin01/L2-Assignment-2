@@ -29,7 +29,7 @@ const getProduct = async (req: Request, res: Response) => {
   try {
     const result = await ProductService.getProductFromDB();
 
-    console.log(result);
+    // console.log(result);
 
     res.status(200).json({
       success: true,
@@ -53,7 +53,7 @@ const getProductById = async (req: Request, res: Response) => {
 
     const result = await ProductService.getProductById(productId);
 
-    console.log(result);
+    // console.log(result);
 
     res.status(200).json({
       success: true,
@@ -72,10 +72,13 @@ const getProductById = async (req: Request, res: Response) => {
 //update product
 const updateProduct = async (req: Request, res: Response) => {
   try {
-    const {productId} = req.params;
+    const { productId } = req.params;
     const updateProduct = req.body;
 
-    const result = await ProductService.updateProducFromDB(productId,updateProduct);
+    const result = await ProductService.updateProducFromDB(
+      productId,
+      updateProduct
+    );
 
     console.log(result);
 
@@ -97,5 +100,5 @@ export const productsController = {
   createProduct,
   getProduct,
   getProductById,
-  updateProduct
+  updateProduct,
 };
