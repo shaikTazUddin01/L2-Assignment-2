@@ -1,18 +1,18 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 import app from "./app";
+import config from "./config";
 
-// try {
-    
-//     async function main() {
-//       await mongoose.connect('mongodb://127.0.0.1:27017/test');
-//     }
-// } catch (error) {
-//     console.log(error);
-// }
+async function main() {
+  try {
+    await mongoose.connect(config.db_url as string);
 
-const port=5000;
+    app.listen(config.port, () => {
+      console.log(`Example app listening on port ${config.port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+// console.log(config.db_url);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
-  
+main();
