@@ -2,12 +2,13 @@ import { Request, Response } from "express";
 import { orderModel } from "./order.model";
 import { OrderService } from "./order.service";
 
+//create order
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderItem = req.body;
     const result = await OrderService.CreateOrderInToDB(orderItem);
 
-    console.log(result);
+    // console.log(result);
 
     res.json({
       success: true,
@@ -22,11 +23,20 @@ const createOrder = async (req: Request, res: Response) => {
     });
   }
 };
+
+//get order 
 const getOrder = async (req: Request, res: Response) => {
   try {
-    const result = await OrderService.GetOrderFromDB();
+    const { email } = req?.query;
 
-
+    let result;
+    console.log(email);
+    if (email) {
+      result = await OrderService.GetOrderByEmail(email as string);
+    } else {
+      result = await OrderService.GetOrderFromDB();
+    }
+console.log(result);
 
     res.json({
       success: true,
@@ -41,6 +51,7 @@ const getOrder = async (req: Request, res: Response) => {
     });
   }
 };
+
 export const orderController = {
   createOrder,
   getOrder,

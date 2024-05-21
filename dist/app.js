@@ -4,11 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const app_router_1 = require("./app.router");
+// import cors from "cors";
 const app = (0, express_1.default)();
-const port = 3000;
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+//middleware json parse
+app.use(express_1.default.json());
+// app.use(cors());
+//create api route
+app.use("/api", app_router_1.routerManager);
+//connection server
+app.get("/", (req, res) => {
+    res.send("server is connecting");
 });
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
+exports.default = app;
