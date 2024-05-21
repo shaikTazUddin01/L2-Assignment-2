@@ -7,7 +7,7 @@ const createProduct = async (req: Request, res: Response) => {
   try {
     const newProduct = req.body;
     const validateProduct = prodctValidationSchema.parse(newProduct);
-    
+
     const result = await ProductService.createProductInToDB(validateProduct);
 
     res.status(200).json({
@@ -88,7 +88,7 @@ const updateProduct = async (req: Request, res: Response) => {
       updateProduct
     );
 
-    console.log(result);
+    // console.log(result);
 
     res.status(200).json({
       success: true,
@@ -109,7 +109,7 @@ const DeleteProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     // const updateProduct = req.body;
-    console.log(productId);
+    // console.log(productId);
     const result = await ProductService.DeleteProducFromDB(productId);
 
     res.status(200).json({

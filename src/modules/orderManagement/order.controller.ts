@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { orderModel } from "./order.model";
+// import { orderModel } from "./order.model";
 import { OrderService } from "./order.service";
 import { ProductService } from "../productManagement/product.service";
 import orderValidationSchema from "./order.zod.validation";
@@ -53,7 +53,7 @@ const createOrder = async (req: Request, res: Response) => {
 //get order
 const getOrder = async (req: Request, res: Response) => {
   try {
-    const { email } = req?.query;
+    const { email } = req.query;
     let result;
 
     if (email) {
@@ -61,7 +61,7 @@ const getOrder = async (req: Request, res: Response) => {
     } else {
       result = await OrderService.GetOrderFromDB();
     }
-    console.log(result);
+    // console.log(result);
 
     result.length != 0
       ? res.json({

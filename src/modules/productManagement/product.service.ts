@@ -1,4 +1,4 @@
-import { query } from "express";
+
 import { productModel } from "./porduct.model";
 import { Product } from "./product.interface";
 
@@ -42,44 +42,39 @@ const updateProducFromDB = async (id: string, updateInfo: Product) => {
 };
 
 //delete product
-const DeleteProducFromDB = async (id: String) => {
+const DeleteProducFromDB = async (id: string) => {
   const result = await productModel.deleteOne({ _id: id });
 
   // console.log(result);
   return result;
 };
 
-
 //product quentity check
 
-const productQuentitycheck= async(newProductQuentity : number,id:string)=>{
-  
+const productQuentitycheck = async (newProductQuentity: number, id: string) => {
   let updatequentity;
-  if (newProductQuentity>0) {
-     updatequentity={
-      "inventory": {
-        "quantity": newProductQuentity,
-        "inStock": true,
-
-        
-    }
-    }
-  }else{
-    updatequentity={
-      "inventory": {
-        "quantity": newProductQuentity,
-        "inStock": false,
+  if (newProductQuentity > 0) {
+    updatequentity = {
+      inventory: {
+        quantity: newProductQuentity,
+        inStock: true,
+      },
+    };
+  } else {
+    updatequentity = {
+      inventory: {
+        quantity: newProductQuentity,
+        inStock: false,
+      },
+    };
   }
-    }
 
-}
+  const result = await productModel.findByIdAndUpdate(id, updatequentity, {
+    returnOriginal: false,
+  });
 
-const result = await productModel.findByIdAndUpdate(id, updatequentity, {
-  returnOriginal: false,
-});
-
-return result;
-}
+  return result;
+};
 
 export const ProductService = {
   createProductInToDB,
@@ -88,5 +83,5 @@ export const ProductService = {
   updateProducFromDB,
   DeleteProducFromDB,
   getProductFromDBByQuery,
-  productQuentitycheck
-}
+  productQuentitycheck,
+};

@@ -5,15 +5,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app_router_1 = require("./app.router");
-// import cors from "cors";
 const app = (0, express_1.default)();
 //middleware json parse
 app.use(express_1.default.json());
-// app.use(cors());
 //create api route
 app.use("/api", app_router_1.routerManager);
 //connection server
 app.get("/", (req, res) => {
     res.send("server is connecting");
+});
+//handle Not Found Route
+app.use("*", (req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "Route not found",
+    });
 });
 exports.default = app;

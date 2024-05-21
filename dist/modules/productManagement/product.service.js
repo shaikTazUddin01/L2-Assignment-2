@@ -47,6 +47,30 @@ const DeleteProducFromDB = (id) => __awaiter(void 0, void 0, void 0, function* (
     // console.log(result);
     return result;
 });
+//product quentity check
+const productQuentitycheck = (newProductQuentity, id) => __awaiter(void 0, void 0, void 0, function* () {
+    let updatequentity;
+    if (newProductQuentity > 0) {
+        updatequentity = {
+            inventory: {
+                quantity: newProductQuentity,
+                inStock: true,
+            },
+        };
+    }
+    else {
+        updatequentity = {
+            inventory: {
+                quantity: newProductQuentity,
+                inStock: false,
+            },
+        };
+    }
+    const result = yield porduct_model_1.productModel.findByIdAndUpdate(id, updatequentity, {
+        returnOriginal: false,
+    });
+    return result;
+});
 exports.ProductService = {
     createProductInToDB,
     getProductFromDB,
@@ -54,4 +78,5 @@ exports.ProductService = {
     updateProducFromDB,
     DeleteProducFromDB,
     getProductFromDBByQuery,
+    productQuentitycheck,
 };

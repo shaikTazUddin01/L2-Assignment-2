@@ -11,7 +11,7 @@ const variantsSchema = z.object({
   }),
 });
 
-const;
+
 
 const prodctValidationSchema = z.object({
   name: z.string({

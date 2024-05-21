@@ -21,4 +21,4 @@ const orderValidationSchema = z.object({
   }),
 });
 
-export default orderValidationSchema
+export default orderValidationSchema;

@@ -12,7 +12,6 @@ const router = express_1.default.Router();
 router.post("/products", product_controller_1.productsController.createProduct);
 router.get("/products", product_controller_1.productsController.getProduct);
 router.get("/products/:productId", product_controller_1.productsController.getProductById);
-// router.get("/products", productsController.getProductByquery);
 router.put("/products/:productId", product_controller_1.productsController.updateProduct);
 router.delete("/products/:productId", product_controller_1.productsController.DeleteProduct);
 //order router
