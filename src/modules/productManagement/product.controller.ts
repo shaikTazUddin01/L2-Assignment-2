@@ -27,7 +27,6 @@ const getProduct = async (req: Request, res: Response) => {
   // console.log("taz");
   try {
     const { searchTerm } = req.query;
-    console.log(searchTerm);
     let result;
     if (searchTerm) {
       result = await ProductService.getProductFromDBByQuery(
@@ -36,7 +35,7 @@ const getProduct = async (req: Request, res: Response) => {
     } else {
       result = await ProductService.getProductFromDB();
     }
-    console.log(result);
+    // console.log(result);
 
     res.status(200).json({
       success: true,
