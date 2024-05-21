@@ -1,3 +1,4 @@
+import { query } from "express";
 import { productModel } from "./porduct.model";
 import { Product } from "./product.interface";
 
@@ -11,6 +12,15 @@ const createProductInToDB = async (product: Product) => {
 //get product
 const getProductFromDB = async () => {
   const result = await productModel.find();
+
+  return result;
+};
+//get product by query
+const getProductFromDBByQuery = async (nameQuery: string) => {
+  const result = await productModel.find({
+    name: { $regex: new RegExp(nameQuery, "i") },
+  });
+  // const result= products.where('name').regex(nameQuery);
 
   return result;
 };
@@ -32,11 +42,10 @@ const updateProducFromDB = async (id: string, updateInfo: Product) => {
 };
 
 //delete product
-
 const DeleteProducFromDB = async (id: String) => {
-  const result = await productModel.deleteOne({_id:id});
+  const result = await productModel.deleteOne({ _id: id });
 
-  console.log(result);
+  // console.log(result);
   return result;
 };
 
@@ -46,4 +55,5 @@ export const ProductService = {
   getProductById,
   updateProducFromDB,
   DeleteProducFromDB,
+  getProductFromDBByQuery,
 };
