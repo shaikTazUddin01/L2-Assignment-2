@@ -2,11 +2,14 @@ import { Request, Response } from "express";
 import { orderModel } from "./order.model";
 import { OrderService } from "./order.service";
 import { ProductService } from "../productManagement/product.service";
+import orderValidationSchema from "./order.zod.validation";
 
 //create order
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const orderItem = req.body;
+    const orderBody = req.body;
+    //zod vaildation
+    const orderItem = orderValidationSchema.parse(orderBody);
 
     //get products to find quentity
     const { productId, quantity } = req.body;
