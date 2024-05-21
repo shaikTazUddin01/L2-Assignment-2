@@ -10,13 +10,13 @@ const createProduct = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Product Retrieve successfully!",
+      message: "Product created successfully!",
       data: result,
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Product is not inserted",
+      message: "Product created Failed!",
       data: error,
     });
   }
@@ -39,13 +39,13 @@ const getProduct = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Product Retrieve successfully!",
+      message: "Products fetched successfully!",
       data: result,
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Product is not Retrieve",
+      message: "Products fetched Failed!",
       data: error,
     });
   }
@@ -63,13 +63,13 @@ const getProductById = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Product Retrieve successfully!",
+      message: "Product fetched successfully!",
       data: result,
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Product is not Retrieve",
+      message: "Product fetched failed!",
       data: error,
     });
   }

@@ -7,11 +7,11 @@ const router = express.Router();
 router.post("/products", productsController.createProduct);
 router.get("/products", productsController.getProduct);
 router.get("/products/:productId", productsController.getProductById);
-// router.get("/products", productsController.getProductByquery);
 router.put("/products/:productId", productsController.updateProduct);
 router.delete("/products/:productId", productsController.DeleteProduct);
 
 //order router
 router.post('/orders',orderController.createOrder)
 router.get('/orders',orderController.getOrder)
+
 export const routerManager = router;

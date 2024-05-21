@@ -49,6 +49,38 @@ const DeleteProducFromDB = async (id: String) => {
   return result;
 };
 
+
+//product quentity check
+
+const productQuentitycheck= async(newProductQuentity : number,id:string)=>{
+  
+  let updatequentity;
+  if (newProductQuentity>0) {
+     updatequentity={
+      "inventory": {
+        "quantity": newProductQuentity,
+        "inStock": true,
+
+        
+    }
+    }
+  }else{
+    updatequentity={
+      "inventory": {
+        "quantity": newProductQuentity,
+        "inStock": false,
+  }
+    }
+
+}
+
+const result = await productModel.findByIdAndUpdate(id, updatequentity, {
+  returnOriginal: false,
+});
+
+return result;
+}
+
 export const ProductService = {
   createProductInToDB,
   getProductFromDB,
@@ -56,4 +88,5 @@ export const ProductService = {
   updateProducFromDB,
   DeleteProducFromDB,
   getProductFromDBByQuery,
-};
+  productQuentitycheck
+}
