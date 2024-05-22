@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.orderController = void 0;
+// import { orderModel } from "./order.model";
 const order_service_1 = require("./order.service");
 const product_service_1 = require("../productManagement/product.service");
 const order_zod_validation_1 = __importDefault(require("./order.zod.validation"));
@@ -56,7 +57,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 //get order
 const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email } = req === null || req === void 0 ? void 0 : req.query;
+        const { email } = req.query;
         let result;
         if (email) {
             result = yield order_service_1.OrderService.GetOrderByEmail(email);
@@ -64,7 +65,7 @@ const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         else {
             result = yield order_service_1.OrderService.GetOrderFromDB();
         }
-        console.log(result);
+        // console.log(result);
         result.length != 0
             ? res.json({
                 success: true,

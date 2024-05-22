@@ -48,11 +48,16 @@ const getProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             result = yield product_service_1.ProductService.getProductFromDB();
         }
         // console.log(result);
-        res.status(200).json({
-            success: true,
-            message: "Products fetched successfully!",
-            data: result,
-        });
+        result.length != 0
+            ? res.status(200).json({
+                success: true,
+                message: "Products fetched successfully!",
+                data: result,
+            })
+            : res.status(200).json({
+                success: true,
+                message: "No Product Found",
+            });
     }
     catch (error) {
         res.status(400).json({
@@ -89,7 +94,7 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const { productId } = req.params;
         const updateProduct = req.body;
         const result = yield product_service_1.ProductService.updateProducFromDB(productId, updateProduct);
-        console.log(result);
+        // console.log(result);
         res.status(200).json({
             success: true,
             message: "Product updated successfully!",
@@ -109,13 +114,18 @@ const DeleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { productId } = req.params;
         // const updateProduct = req.body;
-        console.log(productId);
+        // console.log(productId);
         const result = yield product_service_1.ProductService.DeleteProducFromDB(productId);
-        res.status(200).json({
-            success: true,
-            message: "Product deleted successfully!",
-            data: (result === null || result === void 0 ? void 0 : result.deletedCount) == 1 && null,
-        });
+        (result === null || result === void 0 ? void 0 : result.deletedCount) == 1
+            ? res.status(200).json({
+                success: true,
+                message: "Product deleted successfully!",
+                data: null,
+            })
+            : res.status(404).json({
+                success: false,
+                message: "Product Not Found!",
+            });
     }
     catch (error) {
         res.status(400).json({
