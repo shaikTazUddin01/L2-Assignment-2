@@ -26,7 +26,7 @@
 5. **Run the application:**
    - Open a terminal in the project directory and run the following command to start the project:
      ```
-     npm run start
+     npm run start:dev
      ```
    - Your project should now be running.
 
