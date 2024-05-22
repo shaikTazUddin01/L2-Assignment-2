@@ -12,7 +12,10 @@ app.use(express_1.default.json());
 app.use("/api", app_router_1.routerManager);
 //connection server
 app.get("/", (req, res) => {
-    res.send("server is connecting");
+    res.json({
+        success: true,
+        message: "server is connecting successfully"
+    });
 });
 //handle Not Found Route
 app.use("*", (req, res) => {

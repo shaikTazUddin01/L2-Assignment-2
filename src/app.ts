@@ -11,7 +11,10 @@ app.use("/api", routerManager);
 
 //connection server
 app.get("/", (req: Request, res: Response) => {
-  res.send("server is connecting");
+  res.json({
+    success:true,
+    message:"server is connecting successfully"
+  });
 });
 
 //handle Not Found Route
